@@ -2,7 +2,7 @@ function randomInteger(min, max) {
     // случайное число от min до (max+1)
     let rand = min + Math.random() * (max + 1 - min);
     return Math.floor(rand);
-  }
+}
 
 export class Pole {
     constructor(el) {
@@ -17,7 +17,9 @@ export class Pole {
         for (let i = 0; i < this.pole.length; i++) {
             if (this.pole[i] === 1) {
                 this.pole[i] = 0;
-                this.el.querySelector("#" + this.pole_ids[i]).classList.remove("krot");
+                this.el
+                    .querySelector("#" + this.pole_ids[i])
+                    .classList.remove("krot");
                 break;
             }
         }
