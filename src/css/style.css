@@ -30,5 +30,5 @@
 }
 
 .line__item {
-    cursor: url("../img/hammer.png"), auto;
+    cursor: url("../img/hammer.png") 0 0, auto;
 }
