@@ -7,24 +7,40 @@ function randomInteger(min, max) {
 export class Pole {
     constructor(el) {
         this.el = el;
-        this.pole = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         this.pole_ids = [];
+        this.krot_id = -1;
+        this.losses = 0;
         for (let item of this.el.querySelectorAll(".line__item")) {
             this.pole_ids.push(item.id);
+            item.addEventListener("click", () => {
+                this.click(item.id);
+            });
         }
     }
-    setNextKrot(krot) {
-        for (let i = 0; i < this.pole.length; i++) {
-            if (this.pole[i] === 1) {
-                this.pole[i] = 0;
-                this.el
-                    .querySelector("#" + this.pole_ids[i])
-                    .classList.remove("krot");
-                break;
+    setNextKrot() {
+        let el;
+        if (this.krot_id !== -1) {
+            el = this.el.querySelector("#" + this.krot_id);
+            el.classList.remove("krot");
+            if (!el.classList.contains("clicked")) {
+                this.losses++;
+            }
+            if (this.losses === 5) {
+                alert("Вы проиграли!");
+                this.losses = 0;
+                return;
             }
         }
-        krot = randomInteger(0, this.pole.length - 1);
-        this.pole[krot] = 1;
-        this.el.querySelector("#" + this.pole_ids[krot]).classList.add("krot");
+        do {
+            this.krot_id =
+                this.pole_ids[randomInteger(0, this.pole_ids.length - 1)];
+        } while (el !== undefined && this.krot_id === el.id);
+        el = this.el.querySelector("#" + this.krot_id);
+        el.classList.add("krot");
+    }
+    click(id) {
+        if (this.krot_id === id) {
+            this.el.querySelector("#" + id).classList.add("clicked");
+        }
     }
 }

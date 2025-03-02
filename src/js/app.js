@@ -4,4 +4,4 @@ let pole = new Pole(document.querySelector(".pole"));
 pole.setNextKrot();
 setInterval(() => {
     pole.setNextKrot();
-}, 700);
+}, 1000);

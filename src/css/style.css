@@ -25,6 +25,10 @@
 }
 
 .krot {
-    background-image: url('../img/goblin.png');
+    background-image: url("../img/goblin.png");
     background-size: cover;
+}
+
+.line__item {
+    cursor: url("../img/hammer.png"), auto;
 }
