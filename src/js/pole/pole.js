@@ -31,10 +31,12 @@ export class Pole {
                 return;
             }
         }
+        let i = 0;
         do {
             this.krot_id =
                 this.pole_ids[randomInteger(0, this.pole_ids.length - 1)];
-        } while (el !== undefined && this.krot_id === el.id);
+            i++;
+        } while (el !== undefined && this.krot_id === el.id && i < 5);
         el = this.el.querySelector("#" + this.krot_id);
         el.classList.add("krot");
     }
